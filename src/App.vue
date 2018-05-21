@@ -31,6 +31,7 @@ export default {
 </script>
 
 <style lang="scss">
+@import './style/layout.scss';
 body {
   margin: 0;
   background-color: #f1f1f1;
@@ -70,6 +71,17 @@ body {
           }
         }
       }
+    }
+  }
+  .app-content {
+    width: 1200px;
+    margin: 0 auto;
+    &:after {
+      content: '';
+      display: block;
+      clear: both;
+      overflow: hidden;
+      visibility: hidden;
     }
   }
   .app-footer {
