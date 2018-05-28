@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="app-header">
+<!--     <div class="app-header">
       <div class="app-header-inner">
         <img src="./assets/img/logo.png">
         <div class="header-nav">
@@ -21,12 +21,34 @@
     </div>
     <div class="app-footer">
       <p>Copyright &copy; 2018 xxx.com</p>
-    </div>
+    </div> -->
+    <Carousel :slidersData="slidersData"></Carousel>
   </div>
 </template>
 <script>
+import Carousel from '@/components/carousel.vue'
 export default {
-  name: 'App'
+  components: {
+    Carousel
+  },
+  data () {
+    return {
+      slidersData: [
+        {
+          img: '/static/img/carousel/landscape-1.jpg'
+        },
+        {
+          img: '/static/img/carousel/landscape-2.jpg'
+        },
+        {
+          img: '/static/img/carousel/landscape-3.jpg'
+        },
+        {
+          img: '/static/img/carousel/landscape-4.jpg'
+        }
+      ]
+    }
+  }
 }
 </script>
 

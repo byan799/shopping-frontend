@@ -15,7 +15,7 @@
 		</div>
 		<div id="main">
 			<div class="carousel">
-
+				
 			</div>
 			<div class="board-list">
 				<div class="board-item" v-for="item in boardList">
