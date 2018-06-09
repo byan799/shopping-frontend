@@ -29,7 +29,7 @@
 			return {
 				currentIndex: 0,
 				isShow: true,
-				autoPlayIntervalTime: 1000,
+				autoPlayIntervalTime: 3000,
 				autoPlayIntervalId: undefined
 			}
 		},
@@ -72,16 +72,16 @@
 </script>
 <style lang="scss" scoped>
 	#carousel {
-		width: 750px;
-		height: 350px;
+		width: 900px;
+		height: 400px;
 		margin: auto;
 		position: relative;
 		overflow: hidden;
 		.img-slider {
 			position: relative;
 			img {
-				width: 750px;
-				height: 350px;
+				width: 900px;
+				height: 400px;
 				position: absolute;
 				top: 0;
 				left: 0;
@@ -122,13 +122,13 @@
 			}
 		}
 		.slider-trans-enter {
-			transform: translateX(750px);
+			transform: translateX(900px);
 		}
 		.slider-trans-enter-active {
 			transition: all 0.5s;
 		}
 		.slider-trans-prev-leave-active {
-			transform: translateX(-750px);
+			transform: translateX(-900px);
 			transition: all 0.5s;
 		}
 	}
