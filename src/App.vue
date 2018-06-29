@@ -5,11 +5,11 @@
         <img src="./assets/img/logo.png">
         <div class="header-nav">
           <ul class="nav-list">
-            <li>登录</li>
+            <li @click="modalShow('Log')">登录</li>
             <li class="nav-pile">|</li>
-            <li>注册</li>
+            <li @click="modalShow('Reg')">注册</li>
             <li class="nav-pile">|</li>
-            <li>关于</li>
+            <li @click="modalShow('About')">关于</li>
           </ul>
         </div>
       </div>
@@ -22,10 +22,50 @@
     <div class="app-footer">
       <p>Copyright &copy; 2018 xxx.com</p>
     </div>
+    <modal-dialog :is-dialog-show="isLogDialogShow" :is-cover-show="isLogCoverShow"@on-close="closeDialog('Log')">
+      Log
+    </modal-dialog>
+    <modal-dialog :is-dialog-show="isRegDialogShow" :is-cover-show="isRegCoverShow" @on-close="closeDialog('Reg')">
+      Reg
+    </modal-dialog>
+    <modal-dialog :is-dialog-show="isAboutDialogShow" :is-cover-show="isAboutCoverShow" @on-close="closeDialog('About')">
+      About
+    </modal-dialog>
   </div>
 </template>
 <script>
-
+  import modalDialog from './components/modal-dialog.vue'
+  export default {
+    components: {
+      modalDialog
+    },
+    data () {
+      return {
+        isLogDialogShow: false,
+        isLogCoverShow: false,
+        isRegDialogShow: false,
+        isRegCoverShow: false,
+        isAboutDialogShow: false,
+        isAboutCoverShow: false
+      }
+    },
+    methods: {
+      modalShow (modal) {
+        let dialog = 'is' + modal + 'DialogShow'
+        let cover = 'is' + modal + 'CoverShow'
+        this[dialog] = true
+        this[cover] = true
+      },
+      closeDialog (modal) {
+        let dialog = 'is' + modal + 'DialogShow'
+        let cover = 'is' + modal + 'CoverShow'
+        this[dialog] = false
+        setTimeout(() => {
+          this[cover] = false
+        }, 300)
+      }
+    }
+  }
 </script>
 
 <style lang="scss">
@@ -66,6 +106,7 @@ body {
             text-decoration: none;
             color: white;
             margin: 0 10px;
+            cursor: pointer;
           }
         }
       }
