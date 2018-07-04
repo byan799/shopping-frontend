@@ -29,15 +29,17 @@
       Reg
     </modal-dialog>
     <modal-dialog :is-dialog-show="isAboutDialogShow" :is-cover-show="isAboutCoverShow" @on-close="closeDialog('About')">
-      About
+      <about></about>
     </modal-dialog>
   </div>
 </template>
 <script>
   import modalDialog from './components/modal-dialog.vue'
+  import about from './components/about.vue'
   export default {
     components: {
-      modalDialog
+      modalDialog,
+      about
     },
     data () {
       return {

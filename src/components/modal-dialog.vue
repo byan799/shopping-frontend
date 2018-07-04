@@ -56,6 +56,7 @@
 			width: 50%;
 			height: 300px;
 			background: #fff;
+			border: 5px solid #ccc;
 			&.dialog-transition-enter {
 				top: -100%;
 			}
@@ -67,12 +68,16 @@
 				transition: all 0.3s;
 			}
 			.modal-header {
+				width: 100%;
+				height: 40px;
+				display: flex;
+				justify-content: flex-end;
+				align-items: center;
 				button {
-					float: right;
 					border: 0;
 					font-size: 20px;
-					margin: 10px 20px;
 					cursor: pointer;
+					margin-right: 10px;
 				}
 			}
 		}
