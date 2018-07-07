@@ -5,9 +5,11 @@
         <img src="./assets/img/logo.png">
         <div class="header-nav">
           <ul class="nav-list">
-            <li @click="modalShow('Log')">登录</li>
+            <li v-if="userName !== ''">{{ userName }}</li>
+            <li v-else @click="modalShow('Log')">登录</li>
             <li class="nav-pile">|</li>
-            <li @click="modalShow('Reg')">注册</li>
+            <li v-if="userName != ''" @click="quit">退出</li>
+            <li v-else @click="modalShow('Reg')">注册</li>
             <li class="nav-pile">|</li>
             <li @click="modalShow('About')">关于</li>
           </ul>
@@ -23,10 +25,10 @@
       <p>Copyright &copy; 2018 xxx.com</p>
     </div>
     <modal-dialog :is-dialog-show="isLogDialogShow" :is-cover-show="isLogCoverShow"@on-close="closeDialog('Log')">
-      Log
+      <login @login-success="loginSucess"></login>
     </modal-dialog>
     <modal-dialog :is-dialog-show="isRegDialogShow" :is-cover-show="isRegCoverShow" @on-close="closeDialog('Reg')">
-      Reg
+      <register></register>
     </modal-dialog>
     <modal-dialog :is-dialog-show="isAboutDialogShow" :is-cover-show="isAboutCoverShow" @on-close="closeDialog('About')">
       <about></about>
@@ -36,10 +38,14 @@
 <script>
   import modalDialog from './components/modal-dialog.vue'
   import about from './components/about.vue'
+  import login from './components/login.vue'
+  import register from './components/register.vue'
   export default {
     components: {
       modalDialog,
-      about
+      about,
+      login,
+      register
     },
     data () {
       return {
@@ -48,7 +54,8 @@
         isRegDialogShow: false,
         isRegCoverShow: false,
         isAboutDialogShow: false,
-        isAboutCoverShow: false
+        isAboutCoverShow: false,
+        userName: ''
       }
     },
     methods: {
@@ -65,6 +72,13 @@
         setTimeout(() => {
           this[cover] = false
         }, 300)
+      },
+      loginSucess (name) {
+        this.closeDialog('Log')
+        this.userName = name
+      },
+      quit () {
+        this.userName = ''
       }
     }
   }
