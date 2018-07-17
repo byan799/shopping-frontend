@@ -26,7 +26,7 @@
 					<div class="description">
 						<h2>{{ item.title }}</h2>
 						<p>{{ item.text }}</p>
-						<a href="" class="button">立即购买</a>
+						<a :href="item.href" class="button">立即购买</a>
 					</div>
 				</div>
 			</div>
@@ -44,19 +44,19 @@
 						list: [
 							{
 								name: '数据统计',
-								url: ''
+								href: '/detail/statistics'
 							},
 							{
 								name: '数据预测',
-								url: ''
+								href: '/detail/forecast'
 							},
 							{
 								name: '流量分析',
-								url: ''
+								href: '/detail/analysis'
 							},
 							{
 								name: '广告发布',
-								url: ''
+								href: '/detail/advertise'
 							}
 						]
 					},
@@ -87,21 +87,25 @@
 						id: 'board-item-1',
 						title: '开放产品',
 						text: '开放产品是一款开放产品',
+						href: '/detail/statistics'
 					},
 					{
 						id: 'board-item-2',
 						title: '品牌营销',
-						text: '帮助你的产品更好地找到定位'
+						text: '帮助你的产品更好地找到定位',
+						href: '/detail/advertise'
 					},
 					{
 						id: 'board-item-3',
 						title: '使命必达',
-						text: '永远保持最前端的速度'
+						text: '永远保持最前端的速度',
+						href: '/detail/forecast'
 					},
 					{
 						id: 'board-item-4',
 						title: '永攀高峰',
-						text: '达到事业的顶峰'
+						text: '达到事业的顶峰',
+						href: '/detail/analysis'
 					}
 				],
 				slidersData: [
@@ -131,13 +135,14 @@
 		float: left;
 		box-sizing: border-box;
 		padding: 0 20px;
+		margin-top: 20px;
 		.left-wrapper {
 			background: white;
 			h2 {
 				background: #41b883;
 				color: white;
 				text-align: left;
-				padding-left: 20px;
+				padding: 8px 20px;
 			}
 			.nav-block {
 				border-bottom: 1px solid #f1f1f1;
@@ -147,7 +152,7 @@
 				}
 				h3 {
 					text-align: left;
-					padding-left: 20px;
+					padding: 8px 20px;
 				}
 				ul {
 					padding-left: 25px;
@@ -211,6 +216,9 @@
 				.description {
 					width: 60%;
 					text-align: left;
+					p {
+						margin: 10px 0;
+					}
 					a {
 						&.button {
 							display: block;

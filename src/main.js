@@ -5,9 +5,13 @@ import App from './App'
 import router from './router'
 import mock from './mock/mock'
 import axios from 'axios'
+import iView from 'iview'
+import 'iview/dist/styles/iview.css'
+import './style/layout.scss'
 
 Vue.config.productionTip = false
 Vue.prototype.axios = axios
+Vue.use(iView)
 
 /* eslint-disable no-new */
 new Vue({
@@ -16,3 +20,5 @@ new Vue({
   components: { App },
   template: '<App/>'
 })
+
+

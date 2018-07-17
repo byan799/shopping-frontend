@@ -2,13 +2,15 @@
   <div id="app">
     <div class="app-header">
       <div class="app-header-inner">
-        <img src="./assets/img/logo.png">
+        <router-link to="/">
+          <img src="./assets/img/logo.png">
+        </router-link>
         <div class="header-nav">
           <ul class="nav-list">
             <li v-if="userName !== ''">{{ userName }}</li>
             <li v-else @click="modalShow('Log')">登录</li>
             <li class="nav-pile">|</li>
-            <li v-if="userName != ''" @click="quit">退出</li>
+            <li v-if="userName !== ''" @click="quit">退出</li>
             <li v-else @click="modalShow('Reg')">注册</li>
             <li class="nav-pile">|</li>
             <li @click="modalShow('About')">关于</li>
@@ -85,11 +87,6 @@
 </script>
 
 <style lang="scss">
-@import './style/layout.scss';
-body {
-  margin: 0;
-  background-color: #f1f1f1;
-}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -105,12 +102,15 @@ body {
     width: 100%;
     background-color: #363636;
     .app-header-inner {
+      width: 1200px;
       height: 80px;
-      padding: 20px 40px;
+      padding: 20px;
+      margin: auto;
       img {
         width: 80px;
         height: 80px;
         float: left;
+        margin-left: 20px;
       }
       .header-nav {
         float: right;
@@ -125,6 +125,13 @@ body {
             cursor: pointer;
           }
         }
+      }
+      &:after {
+        content: '';
+        clear: both;
+        display: block;
+        visibility: hidden;
+        overflow: hidden;
       }
     }
   }
