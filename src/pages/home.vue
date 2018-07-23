@@ -8,7 +8,7 @@
 						<h3>{{ product.title }}</h3>
 						<ul>
 							<li v-for="item in product.list">
-								<a :href="item.url">{{ item.name }}</a>
+								<a :href="item.href">{{ item.name }}</a>
 							</li>
 						</ul>
 					</div>
@@ -110,16 +110,16 @@
 				],
 				slidersData: [
 		        {
-		          img: '/static/img/carousel/landscape-1.jpg'
+		          img: '../../static/img/carousel/landscape-1.jpg'
 		        },
 		        {
-		          img: '/static/img/carousel/landscape-2.jpg'
+		          img: '../../static/img/carousel/landscape-2.jpg'
 		        },
 		        {
-		          img: '/static/img/carousel/landscape-3.jpg'
+		          img: '../../static/img/carousel/landscape-3.jpg'
 		        },
 		        {
-		          img: '/static/img/carousel/landscape-4.jpg'
+		          img: '../../static/img/carousel/landscape-4.jpg'
 		        }
 		      ]
 			}
@@ -225,6 +225,9 @@
 							width: 100px;
 							text-align: center;
 							padding: 8px 0;
+							&:hover {
+								color: white;
+							}
 						}
 					}
 				}

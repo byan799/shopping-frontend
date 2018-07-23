@@ -100,7 +100,7 @@
 				.nav-left {
 					width: 50px;
 					height: 50px;
-					background: url('/static/img/components/chevron-left.png') no-repeat;
+					background: url('../../static/img/components/chevron-left.png') no-repeat;
 					display: none;
 				}
 			}
@@ -109,7 +109,7 @@
 				.nav-right {
 					width: 50px;
 					height: 50px;
-					background: url('/static/img/components/chevron-right.png') no-repeat;
+					background: url('../../static/img/components/chevron-right.png') no-repeat;
 					display: none;
 				}
 			}

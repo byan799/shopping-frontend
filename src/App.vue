@@ -3,7 +3,7 @@
     <div class="app-header">
       <div class="app-header-inner">
         <router-link to="/">
-          <img src="./assets/img/logo.png">
+          <img src="/static/img/logo.png">
         </router-link>
         <div class="header-nav">
           <ul class="nav-list">
