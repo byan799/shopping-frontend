@@ -2,13 +2,13 @@
 	<div id="home">
 		<div id="left-side-nav">
 			<div class="left-wrapper">
-				<h2>全部产品</h2>
+				<h2>All Products</h2>
 				<template v-for="(product, index) in productList">
 					<div class='nav-block'>
-						<h3>{{ product.title }}</h3>
+						<h4>{{ product.title }}</h4>
 						<ul>
 							<li v-for="item in product.list">
-								<a :href="item.href">{{ item.name }}</a>
+								<router-link :to="item.url">{{ item.name }}</router-link>
 							</li>
 						</ul>
 					</div>
@@ -24,9 +24,9 @@
 					<div class='board-icon' :class="item.id">
 					</div>
 					<div class="description">
-						<h2>{{ item.title }}</h2>
+						<h4>{{ item.title }}</h4>
 						<p>{{ item.text }}</p>
-						<a :href="item.href" class="button">立即购买</a>
+						<a :href="item.href" class="button">Detail</a>
 					</div>
 				</div>
 			</div>
@@ -40,44 +40,44 @@
 			return {
 				productList: {
 					pc: {
-						title: 'PC产品',
+						title: 'PC Product',
 						list: [
 							{
-								name: '数据统计',
-								href: '/detail/statistics'
+								name: 'Statistics',
+								url: '/detail/statistics'
 							},
 							{
-								name: '数据预测',
-								href: '/detail/forecast'
+								name: 'Forecast',
+								url: '/detail/forecast'
 							},
 							{
-								name: '流量分析',
-								href: '/detail/analysis'
+								name: 'Analysis',
+								url: '/detail/analysis'
 							},
 							{
-								name: '广告发布',
-								href: '/detail/advertise'
+								name: 'Advertise',
+								url: '/detail/advertise'
 							}
 						]
 					},
 					app: {
-						title: '手机应用类',
+						title: 'Mobile APPs',
 						list: [
 							{
-								name: '91助手',
-								url: ''
+								name: 'Mobile Assistant',
+								url: '/'
 							},
 							{
-								name: '产品助手',
-								url: ''
+								name: 'Customed Apps',
+								url: '/'
 							},
 							{
-								name: '智能地图',
-								url: ''
+								name: 'Smart Map',
+								url: '/'
 							},
 							{
-								name: '团队语音',
-								url: ''
+								name: 'AI',
+								url: '/'
 							}
 						]
 					}
@@ -85,26 +85,26 @@
 				boardList: [
 					{
 						id: 'board-item-1',
-						title: '开放产品',
-						text: '开放产品是一款开放产品',
+						title: 'Statistics',
+						text: 'Statistics for Commercial Strategy',
 						href: '/detail/statistics'
 					},
 					{
 						id: 'board-item-2',
-						title: '品牌营销',
-						text: '帮助你的产品更好地找到定位',
+						title: 'Advertise',
+						text: 'Advertising for Marketing',
 						href: '/detail/advertise'
 					},
 					{
 						id: 'board-item-3',
-						title: '使命必达',
-						text: '永远保持最前端的速度',
+						title: 'Forecast',
+						text: 'Foreseeing the Future',
 						href: '/detail/forecast'
 					},
 					{
 						id: 'board-item-4',
-						title: '永攀高峰',
-						text: '达到事业的顶峰',
+						title: 'Analysis',
+						text: 'Be the Top in the Field',
 						href: '/detail/analysis'
 					}
 				],
@@ -150,7 +150,7 @@
 					padding-bottom: 20px;
 					border: 0;
 				}
-				h3 {
+				h4 {
 					text-align: left;
 					padding: 8px 20px;
 				}
@@ -201,15 +201,15 @@
 						background-size: auto;
 					}
 					&.board-item-2 {
-						background: url('../../static/img/images/2.png') no-repeat;
+						background: url('../../static/img/images/3.png') no-repeat;
 						background-size: auto;
 					}
 					&.board-item-3 {
-						background: url('../../static/img/images/3.png') no-repeat;
+						background: url('../../static/img/images/2.png') no-repeat;
 						background-size: auto;
 					}
 					&.board-item-4 {
-						background: url('../../static/img/images/3.png') no-repeat;
+						background: url('../../static/img/images/4.png') no-repeat;
 						background-size: auto;
 					}
 				}

@@ -1,39 +1,40 @@
 <template>
 	<div class="statistics">
 		<div class="main-content">
-			<h3>数据统计</h3>
+			<h3>Statistics</h3>
 			<p class="description">
 				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 			</p>
 			<div class="shopping-block">
 				<div class="product-type">
-					<label>产品类型</label>
+					<label>Product Type</label>
 					<div class="tab-select">
-						<span class="tab" v-for="(item, index) in tabOptions" :key="index" @click="productSelect = item" :class="{ 'active': productSelect === item}">{{ item.type }}</span>
+						<span class="tab" v-for="(item, index) in tabOptions" :key="index" @click="selectItem(item)" :class="{ 'active': productSelected.type === item.type}">{{ item.type }}</span>
 					</div>
 				</div>
 				<div class="district">
-					<label>适用地区</label>
-					<Select v-model="districtSelect">
+					<label>District</label>
+					<Select v-model="productSelected.district" placeholder="select">
 						<Option v-for="item in district" :value="item.value" :key="item.value">{{ item.label }}</Option>
 					</Select>
 				</div>
 				<div class="valid-period">
-					<label>有效期</label>
-					<span class="period">半年</span>
+					<label>Expiration</label>
+					<span class="period">2019-12-31</span>
 				</div>
 				<div class="price">
-					<label>价格</label>
-					<span class="price-value">{{ productSelect.price }}</span>
+					<label>Price</label>
+					<span class="price-value">{{ productSelected.price }}</span>
 				</div>
 				<div class="count">
-					<label>数量</label>
-					<InputNumber :min="1" :max="10" v-model="count"></InputNumber>
+					<label>Quantity</label>
+					<InputNumber :min="1" :max="10" v-model="productSelected.quantity"></InputNumber>
 				</div>
+				<addToCart :product="productSelected"></addToCart>
 			</div>
 		</div>
 		<div class="product-detail">
-			<h3>产品信息</h3>
+			<h3>Detail</h3>
 			<p>
 				Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
@@ -43,52 +44,62 @@
 	</div>
 </template>
 <script>
+	import addToCart from '../../components/addToCart'
 	export default {
+		components: {
+			addToCart
+		},
 		data () {
 			return {
 				tabOptions: [
 					{
-						type: "普通版",
+						type: "basic",
 						price: 500
 					},
 					{
-						type: "特别版",
+						type: "premium",
 						price: 899
 					},
 					{
-						type: "白金版",
+						type: "export",
 						price: 1299
 					}
 				],
 				district: [
 					{
-						label: '北京',
+						label: 'Beijing',
 						value: 'Beijing'
 					},
 					{
-						label: '上海',
+						label: 'Shanghai',
 						value: 'Shanghai'
 					},
 					{
-						label: '重庆',
+						label: 'Chongqing',
 						value: 'Chongqing'
 					},
 					{
-						label: '武汉',
+						label: 'Wuhan',
 						value: 'Wuhan'
 					},
 					{
-						label: '杭州',
+						label: 'Hangzhou',
 						value: 'Hangzhou'
 					}
 				],
-				productSelect: {},
-				districtSelect: '',
-				count: 1				
+				productSelected: {
+					type: 'basic',
+					price: 500,
+					quantity: 1,
+					district: ''
+				}
 			}
 		},
-		created () {
-			this.productSelect = this.tabOptions[0]
+		methods: {
+			selectItem (item) {
+				this.$set(this.productSelected, 'type', item.type)
+				this.$set(this.productSelected, 'price', item.price)
+			}
 		}
 	}
 </script>
@@ -111,7 +122,7 @@
 				label {
 					display: inline-block;
 					font-weight: bold;
-					margin-right: 20px;
+					width: 90px;
 				}
 				.tab-select {
 					display: inline-block;
@@ -130,8 +141,8 @@
 				margin: 20px 0;
 				label {
 					display: inline-block;
-					margin-right: 30px;
 					font-weight: bold;
+					width: 100px;
 				}
 				.ivu-select {
 					display: inline-block;
@@ -143,7 +154,7 @@
 				margin: 20px 0;
 				label {
 					font-weight: bold;
-					margin-right: 45px;
+					width: 100px;
 				}
 			}
 			.price {
@@ -151,14 +162,14 @@
 				margin: 20px 0;
 				label {
 					font-weight: bold;
-					margin-right: 60px;
+					width: 100px;
 				}
 			}
 			.count {
 				text-align: left;
 				label {
 					font-weight: bold;
-					margin-right: 60px;
+					width: 100px;
 				}
 			}
 		}

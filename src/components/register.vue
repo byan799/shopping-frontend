@@ -69,7 +69,7 @@
 						userName: this.userName,
 						password: this.password
 					}
-					this.axios.post('/api/register', params)
+					this.$axios.post('/api/register', params)
 						.then((res) => {
 							let data = res.data 
 							if (data) {

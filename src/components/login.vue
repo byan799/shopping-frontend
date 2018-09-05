@@ -41,7 +41,7 @@
 						userName: this.userName,
 						password: this.password
 					}
-					this.axios.post('/api/login', params)
+					this.$axios.post('/api/login', params)
 						.then((res) => {
 							let data = res.data
 							if (data.flag) {

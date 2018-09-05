@@ -7,13 +7,17 @@
         </router-link>
         <div class="header-nav">
           <ul class="nav-list">
-            <li v-if="userName !== ''">{{ userName }}</li>
-            <li v-else @click="modalShow('Log')">登录</li>
+            <li v-if="userName">{{ userName }}</li>
+            <li v-else @click="modalShow('Log')">Login</li>
             <li class="nav-pile">|</li>
-            <li v-if="userName !== ''" @click="quit">退出</li>
-            <li v-else @click="modalShow('Reg')">注册</li>
+            <li v-if="userName !== ''" @click="quit">Logout</li>
+            <li v-else @click="modalShow('Reg')">Register</li>
             <li class="nav-pile">|</li>
-            <li @click="modalShow('About')">关于</li>
+            <li @click="modalShow('About')">About</li>
+            <li v-if="userName">
+              <span> | </span>
+              <icon name="shopping-cart" id="shopping-cart-icon"></icon>
+            </li>
           </ul>
         </div>
       </div>
@@ -24,7 +28,7 @@
       </keep-alive>
     </div>
     <div class="app-footer">
-      <p>Copyright &copy; 2018 xxx.com</p>
+      <p>Copyright &copy; boboyan.com </p>
     </div>
     <modal-dialog :is-dialog-show="isLogDialogShow" :is-cover-show="isLogCoverShow"@on-close="closeDialog('Log')">
       <login @login-success="loginSucess"></login>
@@ -38,6 +42,7 @@
   </div>
 </template>
 <script>
+  import { mapState, mapActions } from 'vuex'
   import modalDialog from './components/modal-dialog.vue'
   import about from './components/about.vue'
   import login from './components/login.vue'
@@ -47,7 +52,7 @@
       modalDialog,
       about,
       login,
-      register
+      register,
     },
     data () {
       return {
@@ -57,8 +62,16 @@
         isRegCoverShow: false,
         isAboutDialogShow: false,
         isAboutCoverShow: false,
-        userName: ''
       }
+    },
+    created () {
+    },
+    mounted () {
+    },
+    computed: {
+      ...mapState('login', {
+        userName: state => state.userName
+      })
     },
     methods: {
       modalShow (modal) {
@@ -77,11 +90,16 @@
       },
       loginSucess (name) {
         this.closeDialog('Log')
-        this.userName = name
+        //this.$store.dispatch('login/login', name)
+        this.userLogIn(name)
       },
       quit () {
-        this.userName = ''
-      }
+        this.userLogOut()
+      },
+      ...mapActions('login', {
+        userLogIn: 'login',
+        userLogOut: 'logout'
+      })
     }
   }
 </script>
@@ -123,6 +141,12 @@
             color: white;
             margin: 0 10px;
             cursor: pointer;
+            #shopping-cart-icon {
+              width: 20px;
+              height: 17px;
+              margin-top: -4px;
+              margin-left: 10px;
+            }
           }
         }
       }

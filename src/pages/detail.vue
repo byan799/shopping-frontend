@@ -19,22 +19,22 @@
 			return {
 				details: [
 					{
-						name: '数据统计',
+						name: 'Statistics',
 						link: '/detail/statistics',
 						icon: '../../static/img/images/1.png'
 					},
 					{
-						name: '数据预测',
+						name: 'Forecast',
 						link: '/detail/forecast',
 						icon: '../../static/img/images/2.png'
 					},
 					{
-						name: '流量分析',
+						name: 'Analysis',
 						link: '/detail/analysis',
 						icon: '../../static/img/images/3.png'
 					},
 					{
-						name: '广告发布',
+						name: 'Advertise',
 						link: '/detail/advertise',
 						icon: '../../static/img/images/4.png'
 					}
