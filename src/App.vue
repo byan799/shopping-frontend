@@ -10,7 +10,7 @@
             <li v-if="userName">{{ userName }}</li>
             <li v-else @click="modalShow('Log')">Login</li>
             <li class="nav-pile">|</li>
-            <li v-if="userName !== ''" @click="quit">Logout</li>
+            <li v-if="userName" @click="quit">Logout</li>
             <li v-else @click="modalShow('Reg')">Register</li>
             <li class="nav-pile">|</li>
             <li @click="modalShow('About')">About</li>
@@ -62,16 +62,27 @@
         isRegCoverShow: false,
         isAboutDialogShow: false,
         isAboutCoverShow: false,
+        userNameFlag: false
       }
     },
     created () {
+      if (sessionStorage.getItem('userName')) {
+        this.userNameFlag = true
+      }
     },
     mounted () {
     },
     computed: {
+      /*
       ...mapState('login', {
         userName: state => state.userName
       })
+      */
+      userName () {
+        if (this.userNameFlag) {
+          return sessionStorage.getItem('userName')
+        }
+      }
     },
     methods: {
       modalShow (modal) {
@@ -91,10 +102,14 @@
       loginSucess (name) {
         this.closeDialog('Log')
         //this.$store.dispatch('login/login', name)
-        this.userLogIn(name)
+        //this.userLogIn(name)
+        this.userNameFlag = true
+        sessionStorage.setItem('userName', name)
       },
       quit () {
-        this.userLogOut()
+        //this.userLogOut()
+        this.userNameFlag = false
+        sessionStorage.removeItem('userName')
       },
       ...mapActions('login', {
         userLogIn: 'login',

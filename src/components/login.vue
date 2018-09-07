@@ -3,24 +3,24 @@
 		<div class="form">
 			<div class="form-group">
 				<div class="form-label">
-					<span>用户名</span>
+					<span>User Name</span>
 				</div>
 				<div class="form-value">
-					<input type="text" placeholder="请输入用户名" v-model="userName"></input>
+					<input type="text" placeholder="User Name" v-model="userName"></input>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="form-label">
-					<span>密码</span>
+					<span>Password</span>
 				</div>
 				<div class="form-value">
-					<input type="text" placeholder="请输入密码" v-model="password">
+					<input type="text" placeholder="Password" v-model="password">
 					</input>
 				</div>
 			</div>
-			<div class="input-error" v-show="loginErrorShow">请输入用户名和密码</div>
-			<button @click="login">登录</button>
-			<div class="fail" v-show="loginFail">用户名与密码不符</div>
+			<div class="input-error" v-show="loginErrorShow">Please enter user name and password</div>
+			<button @click="login">Login</button>
+			<div class="fail" v-show="loginFail">The user name and password are not matched.</div>
 		</div>
 	</div>	
 </template>

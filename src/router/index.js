@@ -7,44 +7,57 @@ import Statistics from '@/pages/details/statistics'
 import Forecast from '@/pages/details/forecast'
 import Analysis from '@/pages/details/analysis'
 import Advertise from '@/pages/details/advertise'
+import store from '../store/index'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
       path: '/',
-      name: 'Home',
+      name: 'home',
       component: Home
     },
     {
     	path:'/detail',
-    	name: 'Detail',
+    	name: 'detail',
     	component: Detail,
     	redirect: '/detail/statistics',
     	children: [
     		{
     			path: 'statistics',
-    			name: 'Statistics',
+    			name: 'statistics',
     			component: Statistics
     		},
     		{
     			path: 'forecast',
-    			name: 'Forecast',
+    			name: 'forecast',
     			component: Forecast
     		},
     		{
     			path: 'analysis',
-    			name: 'Analysis',
+    			name: 'analysis',
     			component: Analysis
     		},
     		{
     			path: 'advertise',
-    			name: 'Advertise',
+    			name: 'advertise',
     			component: Advertise
     		}
     	]
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+    const nextRoutes = ['detail', 'statistics', 'forecast', 'analysis', 'advertise']
+    if (nextRoutes.indexOf(to.name) > -1) {
+        if (!sessionStorage.getItem('userName')) {
+            // redirect to ...
+        }
+    }
+    next()
+})
+
+export default router

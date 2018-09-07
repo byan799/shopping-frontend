@@ -3,28 +3,28 @@
 		<div class="form">
 			<div class="form-group">
 				<div class="form-label">
-					<span>用户名</span>
+					<span>User Name</span>
 				</div>
 				<div class="form-value">
-					<input type="text" placeholder="请输入用户名" v-model="userName"></input>
+					<input type="text" placeholder="User Name" v-model="userName"></input>
 					<p class="input-error" v-show="nameErrorShow">{{ nameError }}</p>
 				</div>
 			</div>
 			<div class="form-group">
 				<div class="form-label">
-					<span>密码</span>
+					<span>Password</span>
 				</div>
 				<div class="form-value">
-					<input type="text" placeholder="请输入密码" v-model="password">
+					<input type="text" placeholder="Password" v-model="password">
 					</input>
 					<p class="input-error" v-show="passErrorShow">{{ passError }}</p>
 				</div>
 			</div>
-			<div class="input-error" v-show="registerError">请输入用户名和密码</div>
-			<button @click="login">注册</button>
-			<div class="sucess" v-show="sucessShow">注册成功</div>
+			<div class="input-error" v-show="registerError">Please enter user name and password.</div>
+			<button @click="login">Register</button>
+			<div class="sucess" v-show="sucessShow">Succeed!</div>
 		</div>
-	</div>	
+	</div>
 </template>
 <script>
 	export default {
@@ -43,7 +43,7 @@
 				let errorText = ''
 				if (this.userName.includes('_')) {
 					this.nameErrorShow = true
-					errorText = '用户名不能含有“_”'
+					errorText = 'User name cannot include “_”'
 				} else {
 					this.nameErrorShow = false
 					this.registerError = false
@@ -54,7 +54,7 @@
 				let errorText = ''
 				if (this.password.length > 6) {
 					this.passErrorShow = true
-					errorText = '密码不超过6个字符'
+					errorText = 'Password should not be more than 6 letters.'
 				} else {
 					this.passErrorShow = false
 					this.registerError = false
