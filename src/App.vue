@@ -17,6 +17,7 @@
             <li v-if="userName">
               <span> | </span>
               <icon name="shopping-cart" id="shopping-cart-icon"></icon>
+              <span class="total-item">{{ totalItem }}</span>
             </li>
           </ul>
         </div>
@@ -42,7 +43,7 @@
   </div>
 </template>
 <script>
-  import { mapState, mapActions } from 'vuex'
+  import { mapState, mapGetters, mapActions } from 'vuex'
   import modalDialog from './components/modal-dialog.vue'
   import about from './components/about.vue'
   import login from './components/login.vue'
@@ -70,7 +71,8 @@
         this.userNameFlag = true
       }
     },
-    mounted () {
+    updated () {
+      this.totalItemStyleUpdate()
     },
     computed: {
       /*
@@ -82,7 +84,10 @@
         if (this.userNameFlag) {
           return sessionStorage.getItem('userName')
         }
-      }
+      },
+      ...mapGetters('cart', {
+        totalItem: 'totalItem'
+      })
     },
     methods: {
       modalShow (modal) {
@@ -111,6 +116,20 @@
         this.userNameFlag = false
         sessionStorage.removeItem('userName')
       },
+      totalItemStyleUpdate () {
+        let width = $('.app-header .header-nav .nav-list .total-item').width()
+        let height = $('.app-header .header-nav .nav-list .total-item').height()
+        let paddingWidth = 0
+        let paddingHeight = 0
+        if (width >= height) {
+          paddingWidth = '2px'
+          paddingHeight = (width - height) / 2 + 2 + 'px'
+        } else {
+          paddingHeight = '2px'
+          paddingWidth = (height - width) / 2 + 2 + 'px'
+        }
+        $('.app-header .header-nav .nav-list .total-item').css('padding', paddingHeight + ' ' + paddingWidth)
+      },
       ...mapActions('login', {
         userLogIn: 'login',
         userLogOut: 'logout'
@@ -118,7 +137,6 @@
     }
   }
 </script>
-
 <style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -161,6 +179,14 @@
               height: 17px;
               margin-top: -4px;
               margin-left: 10px;
+            }
+            .total-item {
+              background-color: #2db1f3;
+              padding: 2px 8px;
+              border-radius: 50%;
+              position: relative;
+              top: -10px;
+              left: -3px;
             }
           }
         }

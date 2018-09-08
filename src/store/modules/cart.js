@@ -2,6 +2,12 @@ const state = {
 	items: []
 }
 
+const getters = {
+	totalItem: state => {
+		return state.items.length
+	}
+}
+
 const actions = {
 	addToCart: ({ commit, state }, product) => {
 		commit('pushItem', product)
@@ -17,6 +23,7 @@ const mutations = {
 export default {
 	namespaced: true,
 	state,
+	getters,
 	actions,
 	mutations
 }

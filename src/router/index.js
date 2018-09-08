@@ -8,6 +8,7 @@ import Forecast from '@/pages/details/forecast'
 import Analysis from '@/pages/details/analysis'
 import Advertise from '@/pages/details/advertise'
 import store from '../store/index'
+import $ from 'jquery'
 
 Vue.use(Router)
 
@@ -54,10 +55,14 @@ router.beforeEach((to, from, next) => {
     const nextRoutes = ['detail', 'statistics', 'forecast', 'analysis', 'advertise']
     if (nextRoutes.indexOf(to.name) > -1) {
         if (!sessionStorage.getItem('userName')) {
-            // redirect to ...
+            next(false)
+            $('.app-header .header-nav .nav-list>li:first').trigger('click')
+        } else {
+            next()
         }
+    } else {
+        next()
     }
-    next()
 })
 
 export default router
