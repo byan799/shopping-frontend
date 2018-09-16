@@ -26,7 +26,7 @@
 					<div class="description">
 						<h4>{{ item.title }}</h4>
 						<p>{{ item.text }}</p>
-						<a :href="item.href" class="button">Detail</a>
+						<router-link :to="item.href" class="button">Detail</router-link>
 					</div>
 				</div>
 			</div>

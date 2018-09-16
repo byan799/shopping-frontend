@@ -16,8 +16,10 @@
             <li @click="modalShow('About')">About</li>
             <li v-if="userName">
               <span> | </span>
-              <icon name="shopping-cart" id="shopping-cart-icon"></icon>
-              <span class="total-item">{{ totalItem }}</span>
+              <span id="shopping-cart-icon" @click="toAccounting">
+                <icon name="shopping-cart"></icon>
+              </span>
+              <span class="total-item" @click="toAccounting">{{ totalItem }}</span>
             </li>
           </ul>
         </div>
@@ -116,6 +118,9 @@
         this.userNameFlag = false
         sessionStorage.removeItem('userName')
       },
+      toAccounting () {
+        this.$router.push({ name: 'shoppingCart' })
+      },
       totalItemStyleUpdate () {
         let width = $('.app-header .header-nav .nav-list .total-item').width()
         let height = $('.app-header .header-nav .nav-list .total-item').height()
@@ -175,10 +180,12 @@
             margin: 0 10px;
             cursor: pointer;
             #shopping-cart-icon {
-              width: 20px;
-              height: 17px;
-              margin-top: -4px;
-              margin-left: 10px;
+              .fa-icon {
+                width: 20px;
+                height: 17px;
+                margin-top: -4px;
+                margin-left: 10px;
+              }
             }
             .total-item {
               background-color: #2db1f3;

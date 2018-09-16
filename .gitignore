@@ -4,10 +4,8 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-src/assets/img/
 static/
 package.json
-package-lock.json
 # Editor directories and files
 .idea
 .vscode

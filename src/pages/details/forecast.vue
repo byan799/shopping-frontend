@@ -47,21 +47,21 @@
 			return {
 				tabOptions: [
 					{
-						type: "PDF",
+						type: "pdf",
 						price: 500
 					},
 					{
-						type: "Email",
+						type: "email",
 						price: 600
 					},
 					{
-						type: "Report",
+						type: "report",
 						price: 800
 					}
 				],
 				productSelected: {
 					name: 'forecast',
-					type: 'PDF',
+					type: 'pdf',
 					price: 500,
 					quantity: 1
 				},
@@ -101,6 +101,8 @@
 						margin: 0 10px;
 						padding: 5px 15px;
 						cursor: pointer;
+						text-transform: capitalize;
+						display: inline-block;
 						&.active {
 							background-color: #41b883;
 						}

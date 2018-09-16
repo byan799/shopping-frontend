@@ -12,12 +12,6 @@
 						<span class="tab" v-for="(item, index) in tabOptions" :key="index" @click="selectItem(item)" :class="{ 'active': productSelected.type === item.type}">{{ item.type }}</span>
 					</div>
 				</div>
-				<div class="district">
-					<label>District</label>
-					<Select v-model="productSelected.district" placeholder="select">
-						<Option v-for="item in district" :value="item.value" :key="item.value">{{ item.label }}</Option>
-					</Select>
-				</div>
 				<div class="valid-period">
 					<label>Expiration</label>
 					<span class="period">2019-12-31</span>
@@ -65,33 +59,11 @@
 						price: 1299
 					}
 				],
-				district: [
-					{
-						label: 'Beijing',
-						value: 'Beijing'
-					},
-					{
-						label: 'Shanghai',
-						value: 'Shanghai'
-					},
-					{
-						label: 'Chongqing',
-						value: 'Chongqing'
-					},
-					{
-						label: 'Wuhan',
-						value: 'Wuhan'
-					},
-					{
-						label: 'Hangzhou',
-						value: 'Hangzhou'
-					}
-				],
 				productSelected: {
+					name: 'statistics',
 					type: 'basic',
 					price: 500,
-					quantity: 1,
-					district: ''
+					quantity: 1
 				}
 			}
 		},
@@ -99,6 +71,7 @@
 			selectItem (item) {
 				this.$set(this.productSelected, 'type', item.type)
 				this.$set(this.productSelected, 'price', item.price)
+				//this.$set(this.productSelected, 'quantity', item.quantity)
 			}
 		}
 	}
@@ -130,6 +103,8 @@
 						margin: 0 10px;
 						padding: 5px 15px;
 						cursor: pointer;
+						text-transform: capitalize;
+						display: inline-block;
 						&.active {
 							background-color: #41b883;
 						}

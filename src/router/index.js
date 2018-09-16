@@ -7,6 +7,7 @@ import Statistics from '@/pages/details/statistics'
 import Forecast from '@/pages/details/forecast'
 import Analysis from '@/pages/details/analysis'
 import Advertise from '@/pages/details/advertise'
+import ShoppingCart from '@/pages/shoppingCart'
 import store from '../store/index'
 import $ from 'jquery'
 
@@ -47,6 +48,11 @@ const router = new Router({
     			component: Advertise
     		}
     	]
+    },
+    {
+        path: '/shopping-cart',
+        name: 'shoppingCart',
+        component: ShoppingCart
     }
   ]
 })

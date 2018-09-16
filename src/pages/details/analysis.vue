@@ -101,6 +101,8 @@
 						margin: 0 10px;
 						padding: 5px 15px;
 						cursor: pointer;
+						text-transform: capitalize;
+						display: inline-block;
 						&.active {
 							background-color: #41b883;
 						}

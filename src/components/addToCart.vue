@@ -1,7 +1,8 @@
 <template>
 	<div class="cart-block">
 		<img src="../../static/img/components/product-icon.png">
-		<button class="add-to-cart" @click="addToCart">Add to Cart</button>
+		<button class="add-to-cart" @click="addToCart" :disabled="!getQuantity">Add to Cart</button>
+		<span v-show="!getQuantity" class="tip">Out of Stock</span>
 	</div>
 </template>
 <script>
@@ -16,7 +17,29 @@
 		},
 		data () {
 			return {
-
+			}
+		},
+		created () {
+			this.checkQuantity(this.product)
+		},
+		computed: {
+			getQuantity () {
+				if (this.$store.state.products.quantity[this.product.name][this.product.type]) {
+					let productAvailable = this.$store.state.products.quantity[this.product.name][this.product.type]
+					let productInCart = this.$store.state.cart.items.find((item) => {
+						return item.name === this.product.name && item.type === this.product.type
+					})
+					if (productInCart) {
+						if (productInCart.quantity >= productAvailable) {
+							return false
+						} else {
+							return true
+						}
+					} else {
+						return true
+					}
+				}
+				return true
 			}
 		},
 		methods: {
@@ -42,10 +65,12 @@
 				})
 				setTimeout(() => {
 					this.addProduct(this.product)
+					this.checkQuantity(this.product)
 				}, 500)
 			},
-			...mapActions('cart', {
-				addProduct: 'addToCart'
+			...mapActions({
+				addProduct: 'cart/addToCart',
+				checkQuantity: 'products/getItemQuantity'
 			})
 		}
 	}
@@ -64,6 +89,16 @@
 				padding: 10px 20px;
 				background-color: #41b883;
 				cursor: pointer;
+			}
+			&:disabled {
+				cursor: not-allowed;
+			}
+		}
+		span {
+			&.tip {
+				line-height: 43px;
+				margin-left: 20px;
+				color: red;
 			}
 		}
 	}
