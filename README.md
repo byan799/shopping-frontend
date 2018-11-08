@@ -1,6 +1,6 @@
 # shopping-frontend
 
-> An imcompleted demo for Vue learning
+> An incomplete demo for Vue learning
 
 ## Build Setup
 
