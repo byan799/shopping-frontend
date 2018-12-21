@@ -60,8 +60,8 @@
 						height: 20
 					},
 					onEnd: function() {
-            this.destroy()
-          }
+		            	this.destroy()
+		        	}
 				})
 				setTimeout(() => {
 					this.addProduct(this.product)

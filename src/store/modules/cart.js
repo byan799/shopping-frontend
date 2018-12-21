@@ -15,7 +15,6 @@ const actions = {
 		commit('pushItem', product)
 	},
 	removeFromCart: ({ commit, state }, index) => {
-		console.log(index)
 		commit('removeItem', index)
 	}
 }
@@ -34,7 +33,6 @@ const mutations = {
 	},
 	removeItem: (state, index) => {
 		state.items.splice(index, 1)
-		console.log(state.items)
 	}
 }
 
